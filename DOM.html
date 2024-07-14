@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DOM Manipulation</title>
+</head>
+<body>
+  <div id="container">
+    <h1 id="header">Hello World</h1>
+    <p class="paragraph">This is a paragraph.</p>
+    <p class="paragraph">This is another paragraph.</p>
+    <button id="changeTextButton">Change Text</button>
+    <button id="addButton">Add Paragraph</button>
+    <button id="removeButton">Remove Last Paragraph</button>
+  </div>
+
+  <script>
+    // Access elements
+    const header = document.getElementById('header');
+    const paragraphs = document.getElementsByClassName('paragraph');
+    const changeTextButton = document.getElementById('changeTextButton');
+    const addButton = document.getElementById('addButton');
+    const removeButton = document.getElementById('removeButton');
+    const container = document.getElementById('container');
+
+    // Modify element content
+    header.textContent = 'Welcome to My Website';
+    header.style.color = 'blue';
+
+    // Add an event listener to the change text button
+    changeTextButton.addEventListener('click', function() {
+      for (let i = 0; i < paragraphs.length; i++) {
+        paragraphs[i].textContent = 'Paragraph ' + (i + 1) + ' has been changed!';
+        paragraphs[i].style.color = 'green';
+      }
+    });
+
+    // Add an event listener to the add button
+    addButton.addEventListener('click', function() {
+      const newParagraph = document.createElement('p');
+      newParagraph.textContent = 'This is a new paragraph.';
+      container.appendChild(newParagraph);
+    });
+
+    // Add an event listener to the remove button
+    removeButton.addEventListener('click', function() {
+      const paragraphs = container.getElementsByTagName('p');
+      if (paragraphs.length > 0) {
+        container.removeChild(paragraphs[paragraphs.length - 1]);
+      }
+    });
+  </script>
+</body>
+</html>
